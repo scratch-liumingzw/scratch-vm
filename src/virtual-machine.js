@@ -163,6 +163,12 @@ class VirtualMachine extends EventEmitter {
         this.flyoutBlockListener = this.flyoutBlockListener.bind(this);
         this.monitorBlockListener = this.monitorBlockListener.bind(this);
         this.variableListener = this.variableListener.bind(this);
+
+        // for rotrics
+        // blocks中各个模块emit event到此处，然后通过vm发出去
+        this.runtime.on("rotrics", (data) => {
+            this.emit("rotrics", data);
+        });
     }
 
     /**
