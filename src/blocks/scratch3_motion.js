@@ -61,65 +61,35 @@ class Scratch3MotionBlocks {
         this.runtime.emit("rotrics", {blockName})
     }
 
-    // moveHome() {
-    //     const blockName = "motion_move_home";
-    //     this.runtime.emit("rotrics", {blockName})
-    // }
-
-    // moveOrigin() {
-    //     const blockName = "motion_move_origin";
-    //     this.runtime.emit("rotrics", {blockName})
-    // }
-    //
-    // movePosition(args) {
-    //     const blockName = "motion_move_position";
-    //     const x = Cast.toNumber(args.X);
-    //     const y = Cast.toNumber(args.Y);
-    //     const z = Cast.toNumber(args.Z);
-    //     this.runtime.emit("rotrics", {blockName, args: {x, y, z}})
-    // }
-
-    //todo: 根据返回ok，决定是否继续执行
     moveHome() {
         const blockName = "motion_move_home";
-        const p = new Promise((resolve, reject) => {
-            this.runtime.emit("rotrics", {blockName})
-            //做一些异步操作
-            setTimeout(()=>{
-                resolve('');
-            }, 2000);
+        return new Promise((resolve) => {
+            this.runtime.emit("rotrics-async", {blockName, resolve})
         });
-        return p;
     }
+
     moveOrigin() {
         const blockName = "motion_move_origin";
-        const p = new Promise((resolve, reject) => {
-            this.runtime.emit("rotrics", {blockName})
-            //做一些异步操作
-            setTimeout(()=>{
-                resolve('');
-            }, 2000);
+        return new Promise((resolve) => {
+            this.runtime.emit("rotrics-async", {blockName, resolve})
         });
-        return p;
     }
+
     movePosition(args) {
         const blockName = "motion_move_position";
         const x = Cast.toNumber(args.X);
         const y = Cast.toNumber(args.Y);
         const z = Cast.toNumber(args.Z);
-        const p = new Promise((resolve, reject) => {
-            this.runtime.emit("rotrics", {blockName, args: {x, y, z}})
-            //做一些异步操作
-            setTimeout(()=>{
-                resolve('');
-            }, 2000);
+        return new Promise((resolve) => {
+            this.runtime.emit("rotrics-async", {blockName, resolve, args: {x, y, z}})
         });
-        return p;
     }
 
     setWorkOrigin() {
         const blockName = "motion_set_work_origin";
-        this.runtime.emit("rotrics", {blockName})
+        return new Promise((resolve) => {
+            this.runtime.emit("rotrics-async", {blockName, resolve})
+        });
     }
 
     getMonitored() {
