@@ -45,51 +45,8 @@ class Scratch3MotionBlocks {
             motion_xscroll: () => {
             },
             motion_yscroll: () => {
-            },
-            // for rotrics-studio-app
-            motion_reset: this.reset,
-            motion_move_home: this.moveHome,
-            motion_move_origin: this.moveOrigin,
-            motion_move_position: this.movePosition,
-            motion_set_work_origin: this.setWorkOrigin
+            }
         };
-    }
-
-    //for rotrics-studio-app
-    reset() {
-        const blockName = "motion_reset";
-        this.runtime.emit("rotrics", {blockName})
-    }
-
-    moveHome() {
-        const blockName = "motion_move_home";
-        return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
-        });
-    }
-
-    moveOrigin() {
-        const blockName = "motion_move_origin";
-        return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
-        });
-    }
-
-    movePosition(args) {
-        const blockName = "motion_move_position";
-        const x = Cast.toNumber(args.X);
-        const y = Cast.toNumber(args.Y);
-        const z = Cast.toNumber(args.Z);
-        return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {x, y, z}})
-        });
-    }
-
-    setWorkOrigin() {
-        const blockName = "motion_set_work_origin";
-        return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
-        });
     }
 
     getMonitored() {
