@@ -39,7 +39,13 @@ const defaultBlockPackages = {
     scratch3_sound: require('../blocks/scratch3_sound'),
     scratch3_sensing: require('../blocks/scratch3_sensing'),
     scratch3_data: require('../blocks/scratch3_data'),
-    scratch3_procedures: require('../blocks/scratch3_procedures')
+    scratch3_procedures: require('../blocks/scratch3_procedures'),
+    scratch3_rs_motion: require('../blocks/scratch3_rs_motion'),
+    scratch3_rs_module: require('../blocks/scratch3_rs_module'),
+    scratch3_rs_settings: require('../blocks/scratch3_rs_settings'),
+    scratch3_rs_sensing: require('../blocks/scratch3_rs_sensing'),
+    scratch3_rs_sliding_rail: require('../blocks/scratch3_rs_sliding_rail'),
+    scratch3_rs_conveyor_belt: require('../blocks/scratch3_rs_conveyor_belt'),
 };
 
 const defaultExtensionColors = ['#0FBD8C', '#0DA57A', '#0B8E69'];
