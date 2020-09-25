@@ -5,17 +5,9 @@ class Blocks {
 
     getPrimitives() {
         return {
-            RS_CONVEYOR_BELT_SET_ACCELERATION: this.RS_CONVEYOR_BELT_SET_ACCELERATION,
             RS_CONVEYOR_BELT_MOVE: this.RS_CONVEYOR_BELT_MOVE,
             RS_CONVEYOR_BELT_STOP: this.RS_CONVEYOR_BELT_STOP,
         };
-    }
-
-    RS_CONVEYOR_BELT_SET_ACCELERATION(args) {
-        const blockName = "RS_CONVEYOR_BELT_SET_ACCELERATION";
-        return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args})
-        });
     }
 
     RS_CONVEYOR_BELT_MOVE(args) {
