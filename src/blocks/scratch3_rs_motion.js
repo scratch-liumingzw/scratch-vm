@@ -1,5 +1,3 @@
-const Cast = require('../util/cast');
-
 class Blocks {
     constructor(runtime) {
         this.runtime = runtime;
@@ -17,69 +15,52 @@ class Blocks {
         };
     }
 
-    RS_MOTION_SAY_HELLO() {
+    RS_MOTION_SAY_HELLO(args) {
         const blockName = "RS_MOTION_SAY_HELLO";
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
-    RS_MOTION_MOVE_HOME() {
+    RS_MOTION_MOVE_HOME(args) {
         const blockName = "RS_MOTION_MOVE_HOME";
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
-    RS_MOTION_MOVE_ORIGIN() {
+    RS_MOTION_MOVE_ORIGIN(args) {
         const blockName = "RS_MOTION_MOVE_ORIGIN";
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_MOTION_MOVE_POSITION(args) {
         const blockName = "RS_MOTION_MOVE_POSITION";
-        let {VALUE1, VALUE2, VALUE3} = args;
-        VALUE1 = Cast.toNumber(VALUE1);
-        VALUE2 = Cast.toNumber(VALUE2);
-        VALUE3 = Cast.toNumber(VALUE3);
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1, VALUE2, VALUE3}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_MOTION_MOVE_RELATIVE(args) {
         const blockName = "RS_MOTION_MOVE_RELATIVE";
-        let {VALUE1, VALUE2, VALUE3} = args;
-        VALUE1 = Cast.toNumber(VALUE1);
-        VALUE2 = Cast.toNumber(VALUE2);
-        VALUE3 = Cast.toNumber(VALUE3);
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1, VALUE2, VALUE3}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_MOTION_MOVE_RECTANGLE(args) {
         const blockName = "RS_MOTION_MOVE_RECTANGLE";
-        let {VALUE1, VALUE2, VALUE3, VALUE4} = args;
-        VALUE1 = Cast.toNumber(VALUE1);
-        VALUE2 = Cast.toNumber(VALUE2);
-        VALUE3 = Cast.toNumber(VALUE3);
-        VALUE4 = Cast.toNumber(VALUE4);
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1, VALUE2, VALUE3, VALUE4}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_MOTION_MOVE_CIRCLE(args) {
         const blockName = "RS_MOTION_MOVE_CIRCLE";
-        let {VALUE1, VALUE2, VALUE3} = args;
-        VALUE1 = Cast.toNumber(VALUE1);
-        VALUE2 = Cast.toNumber(VALUE2);
-        VALUE3 = Cast.toNumber(VALUE3);
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1, VALUE2, VALUE3}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 }

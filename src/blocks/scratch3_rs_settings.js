@@ -1,5 +1,3 @@
-const Cast = require('../util/cast');
-
 class Blocks {
     constructor(runtime) {
         this.runtime = runtime;
@@ -17,40 +15,36 @@ class Blocks {
 
     RS_SETTINGS_SET_MODULE(args) {
         const blockName = "RS_SETTINGS_SET_MODULE";
-        const VALUE1 = args.VALUE1;
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_SETTINGS_SET_SPEED(args) {
         const blockName = "RS_SETTINGS_SET_SPEED";
-        const VALUE1 = Cast.toNumber(args.VALUE1);
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_SETTINGS_SET_ACCELERATION(args) {
         const blockName = "RS_SETTINGS_SET_ACCELERATION";
-        const VALUE1 = Cast.toNumber(args.VALUE1);
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_SETTINGS_SET_MOTION_MODE(args) {
         const blockName = "RS_SETTINGS_SET_MOTION_MODE";
-        const VALUE1 = args.VALUE1;
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
-    RS_SETTINGS_SET_WORK_ORIGIN() {
+    RS_SETTINGS_SET_WORK_ORIGIN(args) {
         const blockName = "RS_SETTINGS_SET_WORK_ORIGIN";
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 }

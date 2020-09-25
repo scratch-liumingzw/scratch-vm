@@ -1,5 +1,3 @@
-const Cast = require('../util/cast');
-
 class Blocks {
     constructor(runtime) {
         this.runtime = runtime;
@@ -15,25 +13,22 @@ class Blocks {
 
     RS_MODULE_AIR_PICKER(args) {
         const blockName = "RS_MODULE_AIR_PICKER";
-        const VALUE1 = args.VALUE1;
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_MODULE_SOFT_GRIPPER(args) {
         const blockName = "RS_MODULE_SOFT_GRIPPER";
-        const VALUE1 = args.VALUE1;
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 
     RS_MODULE_WRIST_ROTATE(args) {
         const blockName = "RS_MODULE_WRIST_ROTATE";
-        const VALUE1 = Cast.toNumber(args.VALUE1);
         return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1}})
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
     }
 }

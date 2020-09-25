@@ -1,5 +1,3 @@
-const Cast = require('../util/cast');
-
 class Blocks {
     constructor(runtime) {
         this.runtime = runtime;
@@ -13,28 +11,28 @@ class Blocks {
         };
     }
 
-    RS_SENSING_CURRENT_POSITION(args) {
+    async RS_SENSING_CURRENT_POSITION(args) {
         const blockName = "RS_SENSING_CURRENT_POSITION";
-        const VALUE1 = args.VALUE1;
-        return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve, args: {VALUE1}})
+        const result = await new Promise((resolve) => {
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
-        // return 0;
+        return result;
     }
 
-    RS_SENSING_CURRENT_ACCELERATION() {
+    async RS_SENSING_CURRENT_ACCELERATION(args) {
         const blockName = "RS_SENSING_CURRENT_ACCELERATION";
-        return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
+        const result = await new Promise((resolve) => {
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
-        // return 0;
+        return result;
     }
 
-    RS_SENSING_CURRENT_SPEED() {
+    async RS_SENSING_CURRENT_SPEED(args) {
         const blockName = "RS_SENSING_CURRENT_SPEED";
-        return new Promise((resolve) => {
-            this.runtime.emit("rotrics-async", {blockName, resolve})
+        const result = await new Promise((resolve) => {
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
+        return result;
     }
 }
 
