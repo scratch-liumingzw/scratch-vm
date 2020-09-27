@@ -503,12 +503,15 @@ class VirtualMachine extends EventEmitter {
     installTargets(targets, extensions, wholeProject) {
         const extensionPromises = [];
 
-        extensions.extensionIDs.forEach(extensionID => {
-            if (!this.extensionManager.isExtensionLoaded(extensionID)) {
-                const extensionURL = extensions.extensionURLs.get(extensionID) || extensionID;
-                extensionPromises.push(this.extensionManager.loadExtensionURL(extensionURL));
-            }
-        });
+        //TODO: 自定义的 RS blocks，报错：NetworkError.....
+        //暂时注释掉
+        // console.log("extensions: " + JSON.stringify(extensions))
+        // extensions.extensionIDs.forEach(extensionID => {
+        //     if (!this.extensionManager.isExtensionLoaded(extensionID)) {
+        //         const extensionURL = extensions.extensionURLs.get(extensionID) || extensionID;
+        //         extensionPromises.push(this.extensionManager.loadExtensionURL(extensionURL));
+        //     }
+        // });
 
         targets = targets.filter(target => !!target);
 
