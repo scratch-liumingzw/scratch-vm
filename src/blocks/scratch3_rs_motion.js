@@ -12,6 +12,7 @@ class Blocks {
             RS_MOTION_MOVE_RELATIVE: this.RS_MOTION_MOVE_RELATIVE,
             RS_MOTION_MOVE_RECTANGLE: this.RS_MOTION_MOVE_RECTANGLE,
             RS_MOTION_MOVE_CIRCLE: this.RS_MOTION_MOVE_CIRCLE,
+            RS_MOTION_ROTATE_WRIST: this.RS_MOTION_ROTATE_WRIST
         };
     }
 
@@ -59,6 +60,13 @@ class Blocks {
 
     RS_MOTION_MOVE_CIRCLE(args) {
         const blockName = "RS_MOTION_MOVE_CIRCLE";
+        return new Promise((resolve) => {
+            this.runtime.emit("rotrics-async", {blockName, resolve, args})
+        });
+    }
+
+    RS_MOTION_ROTATE_WRIST(args) {
+        const blockName = "RS_MOTION_ROTATE_WRIST";
         return new Promise((resolve) => {
             this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
