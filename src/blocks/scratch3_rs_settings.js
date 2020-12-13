@@ -5,7 +5,7 @@ class Blocks {
 
     getPrimitives() {
         return {
-            RS_SETTINGS_SET_MODULE: this.RS_SETTINGS_SET_MODULE,
+            RS_SETTINGS_SELECT_FRONT_END: this.RS_SETTINGS_SELECT_FRONT_END,
             RS_SETTINGS_SET_SPEED: this.RS_SETTINGS_SET_SPEED,
             RS_SETTINGS_SET_ACCELERATION: this.RS_SETTINGS_SET_ACCELERATION,
             RS_SETTINGS_SET_MOTION_MODE: this.RS_SETTINGS_SET_MOTION_MODE,
@@ -13,8 +13,8 @@ class Blocks {
         };
     }
 
-    RS_SETTINGS_SET_MODULE(args) {
-        const blockName = "RS_SETTINGS_SET_MODULE";
+    RS_SETTINGS_SELECT_FRONT_END(args) {
+        const blockName = "RS_SETTINGS_SELECT_FRONT_END";
         return new Promise((resolve) => {
             this.runtime.emit("rotrics-async", {blockName, resolve, args})
         });
