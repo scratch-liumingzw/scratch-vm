@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const BlockUtility = require('./block-utility');
 const BlocksExecuteCache = require('./blocks-execute-cache');
 const log = require('../util/log');
@@ -511,6 +512,10 @@ const execute = function (sequencer, thread) {
         // Inputs are set during previous steps in the loop.
 
         const primitiveReportedValue = blockFunction(argValues, blockUtility);
+        console.log(blockFunction);
+        console.log(argValues);
+        console.log(blockUtility);
+        console.log(primitiveReportedValue);
 
         // If it's a promise, wait until promise resolves.
         if (isPromise(primitiveReportedValue)) {

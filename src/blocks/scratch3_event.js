@@ -1,5 +1,6 @@
+/* eslint-disable no-console */
 const Cast = require('../util/cast');
-
+const BlockUtility = require('../engine/block-utility');
 class Scratch3EventBlocks {
     constructor (runtime) {
         /**
@@ -26,6 +27,7 @@ class Scratch3EventBlocks {
         return {
             event_whentouchingobject: this.touchingObject,
             event_broadcast: this.broadcast,
+            event_broadcast_serial_port_receive: this.broadcastSerialPortReceive,
             event_broadcastandwait: this.broadcastAndWait,
             event_whengreaterthan: this.hatGreaterThanPredicate
         };
@@ -79,14 +81,46 @@ class Scratch3EventBlocks {
     }
 
     broadcast (args, util) {
-        const broadcastVar = util.runtime.getTargetForStage().lookupBroadcastMsg(
+        console.log(`执行广播 ${args.BROADCAST_OPTION.name}`);
+        console.log(args);
+        console.log(util);
+
+        const runtime = Object.keys(util.runtime).length === 1 ?
+            util.runtime.runtime :
+            util.runtime;
+        // console.log(runtimeKeys);
+
+        const broadcastVar = runtime.getTargetForStage().lookupBroadcastMsg(
             args.BROADCAST_OPTION.id, args.BROADCAST_OPTION.name);
+
+        console.log('广播结果');
+        console.log(broadcastVar);
+        console.log('startHats');
+        console.log(util);
+        console.log(util.startHats);
+        
         if (broadcastVar) {
             const broadcastOption = broadcastVar.name;
             util.startHats('event_whenbroadcastreceived', {
                 BROADCAST_OPTION: broadcastOption
             });
         }
+    }
+
+    // 广播串口接收数据
+    broadcastSerialPortReceive (sequencer) {
+        console.log('生成 广播串口接收数据 方法');
+        const f = receive => {
+            const util = new BlockUtility();
+            util.sequencer = sequencer;
+            this.broadcast({
+                // eslint-disable-next-line no-undefined
+                mutation: undefined,
+                BROADCAST_OPTION: {id: '', name: receive}
+            }, util);
+        };
+
+        return f;
     }
 
     broadcastAndWait (args, util) {
@@ -133,3 +167,8 @@ class Scratch3EventBlocks {
 }
 
 module.exports = Scratch3EventBlocks;
+
+// 挂载到window
+// console.log();
+// console.log('broadcastserialPortReceive 挂载到 window');
+// window.broadcastserialPortReceive = Scratch3EventBlocks.broadcastserialPortReceive;

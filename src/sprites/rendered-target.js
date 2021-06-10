@@ -1022,6 +1022,7 @@ class RenderedTarget extends Target {
      * For a rendered target, this clears graphic effects.
      */
     onGreenFlag () {
+        console.log('onGreenFlag');
         this.clearEffects();
     }
 

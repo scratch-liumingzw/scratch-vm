@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const EventEmitter = require('events');
 const {OrderedMap} = require('immutable');
 
@@ -45,7 +46,7 @@ const defaultBlockPackages = {
     scratch3_rs_settings: require('../blocks/scratch3_rs_settings'),
     scratch3_rs_sensing: require('../blocks/scratch3_rs_sensing'),
     scratch3_rs_sliding_rail: require('../blocks/scratch3_rs_sliding_rail'),
-    scratch3_rs_conveyor_belt: require('../blocks/scratch3_rs_conveyor_belt'),
+    scratch3_rs_conveyor_belt: require('../blocks/scratch3_rs_conveyor_belt')
 };
 
 const defaultExtensionColors = ['#0FBD8C', '#0DA57A', '#0B8E69'];
@@ -182,6 +183,7 @@ let rendererDrawProfilerId = -1;
  */
 class Runtime extends EventEmitter {
     constructor () {
+        console.log('初始化runtime');
         super();
 
         /**
@@ -205,6 +207,7 @@ class Runtime extends EventEmitter {
 
         /** @type {!Sequencer} */
         this.sequencer = new Sequencer(this);
+        console.log(`设置 sequencer`);
 
         /**
          * Storage container for flyout blocks.
@@ -337,6 +340,13 @@ class Runtime extends EventEmitter {
 
         // Register all given block packages.
         this._registerBlockPackages();
+        console.log('注册Blocks成功');
+        console.log(this._primitives);
+        const a = this._primitives.event_broadcast_serial_port_receive(this.sequencer);
+        console.log(a);
+        this._primitives.event_broadcast_serial_port_receive = a;
+        window.broadcast_serial_port_receive = this._primitives.event_broadcast_serial_port_receive;
+        console.log(window.broadcast_serial_port_receive);
 
         // Register and initialize "IO devices", containers for processing
         // I/O related data.
@@ -747,6 +757,7 @@ class Runtime extends EventEmitter {
      * @private
      */
     _registerBlockPackages () {
+        console.log('注册 Blocks');
         for (const packageName in defaultBlockPackages) {
             if (defaultBlockPackages.hasOwnProperty(packageName)) {
                 // @todo pass a different runtime depending on package privilege?
@@ -1508,6 +1519,7 @@ class Runtime extends EventEmitter {
      * @return {Function} The function which implements the opcode.
      */
     getOpcodeFunction (opcode) {
+        console.log('返回所有指令');
         return this._primitives[opcode];
     }
 
@@ -1965,8 +1977,10 @@ class Runtime extends EventEmitter {
      * Start all threads that start with the green flag.
      */
     greenFlag () {
+        console.log('runtime do greenFlag');
         this.stopAll();
         this.emit(Runtime.PROJECT_START);
+        console.log(`触发 ${Runtime.PROJECT_START}`);
         this.ioDevices.clock.resetProjectTimer();
         this.targets.forEach(target => target.clearEdgeActivatedValues());
         // Inform all targets of the green flag.
